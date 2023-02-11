@@ -61,9 +61,11 @@
         android:hint="click here"
         android:textColorHint="@color/grey"
         android:textSize="24sp"
+        android:textColor="@color/black"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="20dp"
+        android:inputType="phone"
         app:layout_constraintBottom_toTopOf="@+id/generateBtn"
         app:layout_constraintEnd_toStartOf="@+id/submitBtn"
         app:layout_constraintStart_toEndOf="@+id/text1" />
@@ -75,7 +77,6 @@
         android:layout_marginEnd="10dp"
         android:text="Submit"
         android:layout_marginBottom="20dp"
-
         app:layout_constraintBottom_toTopOf="@+id/generateBtn"
         app:layout_constraintEnd_toEndOf="parent" />
 

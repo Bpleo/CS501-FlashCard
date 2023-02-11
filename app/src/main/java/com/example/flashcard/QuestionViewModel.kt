@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import kotlin.random.Random
 
 const val CURRENT_INDEX_KEY = "CURRENT_INDEX_KEY"
+const val CURRENT_SUBMIT_STATUS = "CURRENT_SUBMIT_STATUS"
 
 class QuestionViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel() {
     private val questionList = ArrayList<Question>();
