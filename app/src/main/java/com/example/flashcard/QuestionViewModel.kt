@@ -45,6 +45,9 @@ class QuestionViewModel(private val savedStateHandle: SavedStateHandle) : ViewMo
             else
               questionList[currentIndex].answer
         }
+    val currentQuestionList: ArrayList<Question>
+        get()=questionList
+
     var currentCanSubmit: Boolean
         get() = canSubmit
         set(value) { canSubmit = value}
@@ -57,7 +60,6 @@ class QuestionViewModel(private val savedStateHandle: SavedStateHandle) : ViewMo
     var currentCorrectCount: Int
         get() = correctCount
         set(value) {correctCount = value}
-
     fun rePopulateList() {
         //make sure list is clear
         questionList.clear()
