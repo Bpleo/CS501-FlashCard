@@ -5,27 +5,64 @@ import androidx.lifecycle.ViewModel
 import kotlin.random.Random
 
 const val CURRENT_INDEX_KEY = "CURRENT_INDEX_KEY"
-const val CURRENT_SUBMIT_STATUS = "CURRENT_SUBMIT_STATUS"
 
 class QuestionViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel() {
-    private val questionList = ArrayList<Question>();
+    private var questionList = ArrayList<Question>();
+    private var canSubmit: Boolean = false
+    private var canGenerate: Boolean = true
+    private var correctCount: Int = 0
+    private var count: Int = 0
 
     private var currentIndex: Int
         get() = savedStateHandle.get(CURRENT_INDEX_KEY) ?: 0
         set(value) = savedStateHandle.set(CURRENT_INDEX_KEY, value)
 
     val currentOperand1: Int
-        get() = questionList[currentIndex].operand1
+        get() {
+            return if (questionList.isEmpty())
+                -1
+            else
+                questionList[currentIndex].operand1
+        }
     val currentOperand2: Int
-        get() = questionList[currentIndex].operand2
+        get() {
+            return if (questionList.isEmpty())
+                -1
+            else
+                questionList[currentIndex].operand2
+        }
     val currentOperator: Int // 1 for plus, 2 for subtract
-        get() = questionList[currentIndex].operator
+        get() {
+            return if (questionList.isEmpty())
+                -1
+            else
+                questionList[currentIndex].operator
+        }
     val currentAnswer: Int
-        get() = questionList[currentIndex].answer
+        get() {
+          return if (questionList.isEmpty())
+              -1
+            else
+              questionList[currentIndex].answer
+        }
+    var currentCanSubmit: Boolean
+        get() = canSubmit
+        set(value) { canSubmit = value}
+    var currentCanGenerate: Boolean
+        get() = canGenerate
+        set(value) { canGenerate = value}
+    var currentCount: Int
+        get() = count
+        set(value) {count = value}
+    var currentCorrectCount: Int
+        get() = correctCount
+        set(value) {correctCount = value}
 
     fun rePopulateList() {
         //make sure list is clear
         questionList.clear()
+        canGenerate = false
+        canSubmit = true
         //populate addition question
         for (i in 1..5) {
             val operand1: Int = Random.nextInt(1, 99)
